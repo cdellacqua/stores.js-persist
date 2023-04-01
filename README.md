@@ -37,6 +37,56 @@ on whether you need a synchronous or asynchronous store.
 
 ## Example use cases
 
+### Bind a store to a REST endpoint
+
+An async store can be used to fetch data from and persist data to a REST endpoint. RESTStorageAdapters contains presets
+for JSON and plain text adapters, but you can easily
+configure the "raw" `RESTStorageAdapters.async` adapter to
+handle other data formats.
+
+```ts
+import {
+	makeAsyncPersistentStore,
+	RESTStorageAdapters,
+} from '@universal-stores/persist';
+
+const todos$ = makeAsyncPersistentStore<string[]>([], {
+	storage: RESTStorageAdapters.jsonAsync('http://localhost:3000/todos.json'),
+});
+todos$.fetch().catch((err) => console.warn("couldn't fetch TODOs")); // fetch content from the API if available.
+
+todos$.subscribe(console.log); // will print [] immediately, as it is the initial value of the store,
+// followed by the parsed content of "todos.json" requested by the `.fetch()` call.
+```
+
+For more examples on how to use the REST adapter, check out the tests here: [rest.test.ts](./tests/storage-adapters/rest.test.ts).
+
+### Bind a store to a custom async source
+
+Async stores are quite flexible when it comes to storage adapters. You can provide your own by simply
+passing an object that implements `set`, `get` and `clear`.
+
+Here is an example that uses tRPC with a query-able only
+resource:
+
+```ts
+import {makeAsyncPersistentStore} from '@universal-stores/persist';
+
+const todos$ = makeAsyncPersistentStore<string[]>([], {
+	storage: {
+		get(options) {
+			return trpc.todos.query({signal: options?.signal});
+		},
+		set: () => Promise.reject(new Error('not supported')),
+		clear: () => Promise.reject(new Error('not supported')),
+	},
+});
+todos$.fetch().catch((err) => console.warn("couldn't fetch TODOs")); // fetch content from the API if available.
+
+todos$.subscribe(console.log); // will print [] immediately, as it is the initial value of the store,
+// followed by the parsed content returned by the tRPC query.
+```
+
 ### Persisting client-side data in the local storage
 
 A client-side "TODO list" could be represented in its simplest

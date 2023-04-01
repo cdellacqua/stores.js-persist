@@ -102,7 +102,7 @@ Configuration object used to initialize the Persistent Store.
 | :------ | :------ | :------ |
 | `maxPendingOperations?` | `number` | (optional, defaults to 100) The maximum number of async operations that can be enqueued before starting to reject. |
 | `start?` | [`AsyncPersistentStoreStartHandler`](README.md#asyncpersistentstorestarthandler)<`T`\> | (optional) A start function that will be called once the store has at least one subscriber and optionally returns a stop function that will be called once the store has no remaining subscribers. |
-| `storage` | [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> \| [`ObservableAsyncItemStorage`](README.md#observableasyncitemstorage)<`T`\> | An storage. |
+| `storage` | [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> \| [`ObservableAsyncItemStorage`](README.md#observableasyncitemstorage)<`T`\> | A storage. |
 
 #### Defined in
 

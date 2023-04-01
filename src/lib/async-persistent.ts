@@ -66,7 +66,7 @@ export type AsyncPersistentStoreStartHandler<T> = (
  * Configuration object used to initialize the Persistent Store.
  */
 export type AsyncPersistentStoreConfig<T> = {
-	/** An storage. */
+	/** A storage. */
 	storage: AsyncItemStorage<T> | ObservableAsyncItemStorage<T>;
 	/**
 	 * (optional) A start function that will be called once the store has at least one subscriber and optionally returns a stop function that will be called
