@@ -26,10 +26,10 @@ is successfully persisted to the underlying storage mechanism.
 When you create a persistent store, both factory functions need a storage object, that is an object
 that implements read, write and delete operations.
 
-You can can use one of the built-ins provided in this package, such as:
+You can use one of the built-ins provided in this package, such as:
 
 - WebStorageAdapters.local, WebStorageAdapters.session
-- RESTStorageAdapters.textAsync, FileStorageAdapters.jsonAsync
+- RESTStorageAdapters.textAsync, RESTStorageAdapters.jsonAsync
 - FileStorageAdapters.textSync, FileStorageAdapters.jsonSync, FileStorageAdapters.textAsync, FileStorageAdapters.jsonAsync
 
 Or you can create your own by providing an object that implements `ItemStorage` or `AsyncItemStorage`, depending
