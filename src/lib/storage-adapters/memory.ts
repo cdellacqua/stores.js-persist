@@ -5,7 +5,7 @@ import {AsyncItemStorage, ItemStorage} from './shared';
  * it can be used for testing purposes and for mixed SSR-CSR scenarios when
  * the server is prerendering content by running the same code as the client (e.g. Next.js, SvelteKit).
  */
-export function sync<T>(defaultValue?: T | undefined): ItemStorage<T> {
+function sync<T>(defaultValue?: T | undefined): ItemStorage<T> {
 	let currentValue = defaultValue;
 	return {
 		clear: () => {
@@ -23,7 +23,7 @@ export function sync<T>(defaultValue?: T | undefined): ItemStorage<T> {
  * it can be used for testing purposes and for mixed SSR-CSR scenarios when
  * the server is prerendering content by running the same code as the client (e.g. Next.js, SvelteKit).
  */
-export function async<T>(defaultValue?: T | undefined): AsyncItemStorage<T> {
+function async<T>(defaultValue?: T | undefined): AsyncItemStorage<T> {
 	let currentValue = defaultValue;
 	return {
 		clear: async (opts) => {
@@ -40,3 +40,8 @@ export function async<T>(defaultValue?: T | undefined): AsyncItemStorage<T> {
 		},
 	};
 }
+
+export const InMemoryStorageAdapters = {
+	sync,
+	async,
+};

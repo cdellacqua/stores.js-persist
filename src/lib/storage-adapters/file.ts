@@ -19,7 +19,7 @@ import {makeJSONSerde} from './serde/json-serde';
  * @param path The target file path.
  * @param options A serializer/deserializer and whether to watch the file for external changes.
  */
-export function sync<T>(
+function sync<T>(
 	path: fs.PathLike,
 	options: {
 		serde: Serde<T, string | NodeJS.ArrayBufferView, Buffer>;
@@ -32,7 +32,7 @@ export function sync<T>(
  * @param path The target file path.
  * @param options A serializer/deserializer and whether to watch the file for external changes.
  */
-export function sync<T>(
+function sync<T>(
 	path: fs.PathLike,
 	options: {
 		serde: Serde<T, string | NodeJS.ArrayBufferView, Buffer>;
@@ -45,7 +45,7 @@ export function sync<T>(
  * @param path The target file path.
  * @param options A serializer/deserializer and whether to watch the file for external changes.
  */
-export function sync<T>(
+function sync<T>(
 	path: fs.PathLike,
 	options: {
 		serde: Serde<T, string | NodeJS.ArrayBufferView, Buffer>;
@@ -53,7 +53,7 @@ export function sync<T>(
 	},
 ): ItemStorage<T> | ObservableItemStorage<T>;
 
-export function sync<T>(
+function sync<T>(
 	path: fs.PathLike,
 	options: {
 		serde: Serde<T, string | NodeJS.ArrayBufferView, Buffer>;
@@ -123,7 +123,7 @@ export function sync<T>(
  * @param path The target file path.
  * @param options A serializer/deserializer and whether to watch the file for external changes.
  */
-export function async<T>(
+function async<T>(
 	path: fs.PathLike,
 	options: {
 		serde: AsyncSerde<
@@ -145,7 +145,7 @@ export function async<T>(
  * @param path The target file path.
  * @param options A serializer/deserializer and whether to watch the file for external changes.
  */
-export function async<T>(
+function async<T>(
 	path: fs.PathLike,
 	options: {
 		serde: AsyncSerde<
@@ -167,7 +167,7 @@ export function async<T>(
  * @param path The target file path.
  * @param options A serializer/deserializer and whether to watch the file for external changes.
  */
-export function async<T>(
+function async<T>(
 	path: fs.PathLike,
 	options: {
 		serde: AsyncSerde<
@@ -183,7 +183,7 @@ export function async<T>(
 	},
 ): AsyncItemStorage<T> | ObservableAsyncItemStorage<T>;
 
-export function async<T>(
+function async<T>(
 	path: fs.PathLike,
 	options: {
 		serde: AsyncSerde<
@@ -296,7 +296,7 @@ export function async<T>(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function jsonSync<T>(
+function jsonSync<T>(
 	path: fs.PathLike,
 	options: {
 		observe: true;
@@ -308,7 +308,7 @@ export function jsonSync<T>(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function jsonSync<T>(
+function jsonSync<T>(
 	path: fs.PathLike,
 	options?: {
 		observe?: false;
@@ -320,11 +320,11 @@ export function jsonSync<T>(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function jsonSync<T>(
+function jsonSync<T>(
 	path: fs.PathLike,
 	options: {observe?: boolean},
 ): ItemStorage<T> | ObservableItemStorage<T>;
-export function jsonSync<T>(
+function jsonSync<T>(
 	path: fs.PathLike,
 	options?: {observe?: boolean},
 ): ItemStorage<T> | ObservableItemStorage<T> {
@@ -345,7 +345,7 @@ export function jsonSync<T>(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function textSync(
+function textSync(
 	path: fs.PathLike,
 	options?: {observe?: false},
 ): ItemStorage<string>;
@@ -355,7 +355,7 @@ export function textSync(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function textSync(
+function textSync(
 	path: fs.PathLike,
 	options: {observe: true},
 ): ObservableItemStorage<string>;
@@ -365,12 +365,12 @@ export function textSync(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function textSync(
+function textSync(
 	path: fs.PathLike,
 	options?: {observe?: boolean},
 ): ItemStorage<string> | ObservableItemStorage<string>;
 
-export function textSync(
+function textSync(
 	path: fs.PathLike,
 	options?: {observe?: boolean},
 ): ItemStorage<string> | ObservableItemStorage<string> {
@@ -389,7 +389,7 @@ export function textSync(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function jsonAsync<T>(
+function jsonAsync<T>(
 	path: fs.PathLike,
 	options: {observe: true},
 ): ObservableAsyncItemStorage<T>;
@@ -399,7 +399,7 @@ export function jsonAsync<T>(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function jsonAsync<T>(
+function jsonAsync<T>(
 	path: fs.PathLike,
 	options?: {observe?: false},
 ): AsyncItemStorage<T>;
@@ -409,12 +409,12 @@ export function jsonAsync<T>(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function jsonAsync<T>(
+function jsonAsync<T>(
 	path: fs.PathLike,
 	options?: {observe?: boolean},
 ): AsyncItemStorage<T> | ObservableAsyncItemStorage<T>;
 
-export function jsonAsync<T>(
+function jsonAsync<T>(
 	path: fs.PathLike,
 	options?: {observe?: boolean},
 ): AsyncItemStorage<T> | ObservableAsyncItemStorage<T> {
@@ -435,7 +435,7 @@ export function jsonAsync<T>(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function textAsync(
+function textAsync(
 	path: fs.PathLike,
 	options?: {observe?: false},
 ): AsyncItemStorage<string>;
@@ -445,7 +445,7 @@ export function textAsync(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function textAsync(
+function textAsync(
 	path: fs.PathLike,
 	options: {observe: true},
 ): ObservableAsyncItemStorage<string>;
@@ -455,12 +455,12 @@ export function textAsync(
  * @param path The target file path.
  * @param options Whether to watch the file for external changes.
  */
-export function textAsync(
+function textAsync(
 	path: fs.PathLike,
 	options?: {observe?: boolean},
 ): AsyncItemStorage<string> | ObservableAsyncItemStorage<string>;
 
-export function textAsync(
+function textAsync(
 	path: fs.PathLike,
 	options?: {observe?: boolean},
 ): AsyncItemStorage<string> | ObservableAsyncItemStorage<string> {
@@ -472,3 +472,12 @@ export function textAsync(
 		observe: options?.observe,
 	});
 }
+
+export const FileStorageAdapters = {
+	sync,
+	async,
+	jsonSync,
+	textSync,
+	jsonAsync,
+	textAsync,
+};

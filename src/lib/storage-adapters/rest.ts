@@ -47,7 +47,7 @@ export type PartialRESTAsyncStorageAdapterConfig = {
  * @param resourceUrl The URL of the API responsible for the remote resource.
  * @param config Configuration object containing information on how to deal with the remote resource.
  */
-export function async<T, TBody>(
+function async<T, TBody>(
 	resourceUrl: string,
 	config: RestAsyncStorageAdapterConfig<T, TBody>,
 ): AsyncItemStorage<T> {
@@ -101,7 +101,7 @@ export function async<T, TBody>(
  * @param resourceUrl The URL of the API responsible for the remote resource.
  * @param config Configuration object containing information on how to deal with the remote resource.
  */
-export function jsonAsync<T>(
+function jsonAsync<T>(
 	resourceUrl: string,
 	config?: PartialRESTAsyncStorageAdapterConfig,
 ): AsyncItemStorage<T> {
@@ -131,7 +131,7 @@ export function jsonAsync<T>(
  * @param resourceUrl The URL of the API responsible for the remote resource.
  * @param config Configuration object containing information on how to deal with the remote resource.
  */
-export function textAsync(
+function textAsync(
 	resourceUrl: string,
 	config?: PartialRESTAsyncStorageAdapterConfig,
 ): AsyncItemStorage<string> {
@@ -151,3 +151,5 @@ export function textAsync(
 		verbs: config?.verbs,
 	});
 }
+
+export const RESTStorageAdapters = {async, jsonAsync, textAsync};

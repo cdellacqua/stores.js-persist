@@ -4,13 +4,6 @@
 
 ## Table of contents
 
-### Namespaces
-
-- [FileStorageAdapters](modules/FileStorageAdapters.md)
-- [InMemoryStorageAdapters](modules/InMemoryStorageAdapters.md)
-- [RESTStorageAdapters](modules/RESTStorageAdapters.md)
-- [WebStorageAdapters](modules/WebStorageAdapters.md)
-
 ### Classes
 
 - [JSONDeserializationError](classes/JSONDeserializationError.md)
@@ -25,12 +18,24 @@
 - [AsyncSerde](README.md#asyncserde)
 - [AsyncSetter](README.md#asyncsetter)
 - [AsyncUpdate](README.md#asyncupdate)
+- [HttpVerb](README.md#httpverb)
+- [HttpVerbWithBody](README.md#httpverbwithbody)
+- [HttpVerbsWithoutBody](README.md#httpverbswithoutbody)
 - [ItemStorage](README.md#itemstorage)
 - [ObservableAsyncItemStorage](README.md#observableasyncitemstorage)
 - [ObservableItemStorage](README.md#observableitemstorage)
+- [PartialRESTAsyncStorageAdapterConfig](README.md#partialrestasyncstorageadapterconfig)
 - [PersistentStore](README.md#persistentstore)
 - [PersistentStoreConfig](README.md#persistentstoreconfig)
+- [RestAsyncStorageAdapterConfig](README.md#restasyncstorageadapterconfig)
 - [Serde](README.md#serde)
+
+### Variables
+
+- [FileStorageAdapters](README.md#filestorageadapters)
+- [InMemoryStorageAdapters](README.md#inmemorystorageadapters)
+- [RESTStorageAdapters](README.md#reststorageadapters)
+- [WebStorageAdapters](README.md#webstorageadapters)
 
 ### Functions
 
@@ -243,6 +248,36 @@ ___
 
 ___
 
+### HttpVerb
+
+Ƭ **HttpVerb**: [`HttpVerbsWithoutBody`](README.md#httpverbswithoutbody) \| [`HttpVerbWithBody`](README.md#httpverbwithbody)
+
+#### Defined in
+
+[src/lib/storage-adapters/rest.ts:6](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/rest.ts#L6)
+
+___
+
+### HttpVerbWithBody
+
+Ƭ **HttpVerbWithBody**: ``"POST"`` \| ``"PUT"`` \| ``"PATCH"`` \| ``"DELETE"``
+
+#### Defined in
+
+[src/lib/storage-adapters/rest.ts:5](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/rest.ts#L5)
+
+___
+
+### HttpVerbsWithoutBody
+
+Ƭ **HttpVerbsWithoutBody**: ``"GET"``
+
+#### Defined in
+
+[src/lib/storage-adapters/rest.ts:4](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/rest.ts#L4)
+
+___
+
 ### ItemStorage
 
 Ƭ **ItemStorage**<`T`\>: `Object`
@@ -313,6 +348,29 @@ all the associated resource may be properly freed (e.g. a file system watcher, a
 
 ___
 
+### PartialRESTAsyncStorageAdapterConfig
+
+Ƭ **PartialRESTAsyncStorageAdapterConfig**: `Object`
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fetchOptions?` | { `credentials?`: `RequestCredentials` ; `headers?`: `HeadersInit` ; `redirect?`: `RequestRedirect`  } | Options that overrides the default fetch configuration. |
+| `fetchOptions.credentials?` | `RequestCredentials` | - |
+| `fetchOptions.headers?` | `HeadersInit` | - |
+| `fetchOptions.redirect?` | `RequestRedirect` | - |
+| `verbs?` | { `clear?`: [`HttpVerb`](README.md#httpverb) ; `get?`: [`HttpVerb`](README.md#httpverb) ; `set?`: [`HttpVerbWithBody`](README.md#httpverbwithbody)  } | HTTP verbs that should be used to interact with the remote resource. |
+| `verbs.clear?` | [`HttpVerb`](README.md#httpverb) | - |
+| `verbs.get?` | [`HttpVerb`](README.md#httpverb) | - |
+| `verbs.set?` | [`HttpVerbWithBody`](README.md#httpverbwithbody) | - |
+
+#### Defined in
+
+[src/lib/storage-adapters/rest.ts:27](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/rest.ts#L27)
+
+___
+
 ### PersistentStore
 
 Ƭ **PersistentStore**<`T`\>: `Store`<`T`\> & { `fetch`: () => `T` \| `undefined` ; `persist`: () => `void` ; `setCache`: `Setter`<`T`\> ; `storage`: [`ItemStorage`](README.md#itemstorage)<`T`\> ; `updateCache`: `Update`<`T`\>  }
@@ -356,6 +414,38 @@ Configuration object used to initialize the Persistent Store.
 
 ___
 
+### RestAsyncStorageAdapterConfig
+
+Ƭ **RestAsyncStorageAdapterConfig**<`T`, `TBody`\>: `Object`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `T` |
+| `TBody` | `T` |
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `bodyExtractor` | (`response`: `Response`) => `Promise`<`TBody`\> | A function that, given the fetch response object, returns the useful content that needs to be deserialized. |
+| `fetchOptions?` | { `credentials?`: `RequestCredentials` ; `headers?`: `HeadersInit` ; `redirect?`: `RequestRedirect`  } | Options that overrides the default fetch configuration. |
+| `fetchOptions.credentials?` | `RequestCredentials` | - |
+| `fetchOptions.headers?` | `HeadersInit` | - |
+| `fetchOptions.redirect?` | `RequestRedirect` | - |
+| `serde` | [`AsyncSerde`](README.md#asyncserde)<`T`, `BodyInit`, `TBody`\> | A serializer/deserializer. |
+| `verbs?` | { `clear?`: [`HttpVerb`](README.md#httpverb) ; `get?`: [`HttpVerb`](README.md#httpverb) ; `set?`: [`HttpVerbWithBody`](README.md#httpverbwithbody)  } | HTTP verbs that should be used to interact with the remote resource. |
+| `verbs.clear?` | [`HttpVerb`](README.md#httpverb) | - |
+| `verbs.get?` | [`HttpVerb`](README.md#httpverb) | - |
+| `verbs.set?` | [`HttpVerbWithBody`](README.md#httpverbwithbody) | - |
+
+#### Defined in
+
+[src/lib/storage-adapters/rest.ts:8](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/rest.ts#L8)
+
+___
+
 ### Serde
 
 Ƭ **Serde**<`TSerializable`, `TSerialized`, `TDeserializable`\>: `Object`
@@ -380,6 +470,79 @@ A serializer/deserializer.
 #### Defined in
 
 [src/lib/storage-adapters/shared.ts:6](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/shared.ts#L6)
+
+## Variables
+
+### FileStorageAdapters
+
+• `Const` **FileStorageAdapters**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `async` | <T\>(`path`: `PathLike`, `options`: { `observe`: ``true`` ; `serde`: [`AsyncSerde`](README.md#asyncserde)<`T`, `string` \| `ArrayBufferView` \| `Iterable`<`string` \| `ArrayBufferView`\> \| `AsyncIterable`<`string` \| `ArrayBufferView`\> \| `Stream`, `Buffer`\>  }) => [`ObservableAsyncItemStorage`](README.md#observableasyncitemstorage)<`T`\><T\>(`path`: `PathLike`, `options`: { `observe?`: ``false`` ; `serde`: [`AsyncSerde`](README.md#asyncserde)<`T`, `string` \| `ArrayBufferView` \| `Iterable`<`string` \| `ArrayBufferView`\> \| `AsyncIterable`<`string` \| `ArrayBufferView`\> \| `Stream`, `Buffer`\>  }) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\><T\>(`path`: `PathLike`, `options`: { `observe?`: `boolean` ; `serde`: [`AsyncSerde`](README.md#asyncserde)<`T`, `string` \| `ArrayBufferView` \| `Iterable`<`string` \| `ArrayBufferView`\> \| `AsyncIterable`<`string` \| `ArrayBufferView`\> \| `Stream`, `Buffer`\>  }) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> \| [`ObservableAsyncItemStorage`](README.md#observableasyncitemstorage)<`T`\> |
+| `jsonAsync` | <T\>(`path`: `PathLike`, `options`: { `observe`: ``true``  }) => [`ObservableAsyncItemStorage`](README.md#observableasyncitemstorage)<`T`\><T\>(`path`: `PathLike`, `options?`: { `observe?`: ``false``  }) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\><T\>(`path`: `PathLike`, `options?`: { `observe?`: `boolean`  }) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> \| [`ObservableAsyncItemStorage`](README.md#observableasyncitemstorage)<`T`\> |
+| `jsonSync` | <T\>(`path`: `PathLike`, `options`: { `observe`: ``true``  }) => [`ObservableItemStorage`](README.md#observableitemstorage)<`T`\><T\>(`path`: `PathLike`, `options?`: { `observe?`: ``false``  }) => [`ItemStorage`](README.md#itemstorage)<`T`\><T\>(`path`: `PathLike`, `options`: { `observe?`: `boolean`  }) => [`ItemStorage`](README.md#itemstorage)<`T`\> \| [`ObservableItemStorage`](README.md#observableitemstorage)<`T`\> |
+| `sync` | <T\>(`path`: `PathLike`, `options`: { `observe`: ``true`` ; `serde`: [`Serde`](README.md#serde)<`T`, `string` \| `ArrayBufferView`, `Buffer`\>  }) => [`ObservableItemStorage`](README.md#observableitemstorage)<`T`\><T\>(`path`: `PathLike`, `options`: { `observe?`: ``false`` ; `serde`: [`Serde`](README.md#serde)<`T`, `string` \| `ArrayBufferView`, `Buffer`\>  }) => [`ItemStorage`](README.md#itemstorage)<`T`\><T\>(`path`: `PathLike`, `options`: { `observe?`: `boolean` ; `serde`: [`Serde`](README.md#serde)<`T`, `string` \| `ArrayBufferView`, `Buffer`\>  }) => [`ItemStorage`](README.md#itemstorage)<`T`\> \| [`ObservableItemStorage`](README.md#observableitemstorage)<`T`\> |
+| `textAsync` | (`path`: `PathLike`, `options?`: { `observe?`: ``false``  }) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`string`\>(`path`: `PathLike`, `options`: { `observe`: ``true``  }) => [`ObservableAsyncItemStorage`](README.md#observableasyncitemstorage)<`string`\>(`path`: `PathLike`, `options?`: { `observe?`: `boolean`  }) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`string`\> \| [`ObservableAsyncItemStorage`](README.md#observableasyncitemstorage)<`string`\> |
+| `textSync` | (`path`: `PathLike`, `options?`: { `observe?`: ``false``  }) => [`ItemStorage`](README.md#itemstorage)<`string`\>(`path`: `PathLike`, `options`: { `observe`: ``true``  }) => [`ObservableItemStorage`](README.md#observableitemstorage)<`string`\>(`path`: `PathLike`, `options?`: { `observe?`: `boolean`  }) => [`ItemStorage`](README.md#itemstorage)<`string`\> \| [`ObservableItemStorage`](README.md#observableitemstorage)<`string`\> |
+
+#### Defined in
+
+[src/lib/storage-adapters/file.ts:476](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/file.ts#L476)
+
+___
+
+### InMemoryStorageAdapters
+
+• `Const` **InMemoryStorageAdapters**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `async` | <T\>(`defaultValue?`: `T`) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> |
+| `sync` | <T\>(`defaultValue?`: `T`) => [`ItemStorage`](README.md#itemstorage)<`T`\> |
+
+#### Defined in
+
+[src/lib/storage-adapters/memory.ts:44](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/memory.ts#L44)
+
+___
+
+### RESTStorageAdapters
+
+• `Const` **RESTStorageAdapters**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `async` | <T, TBody\>(`resourceUrl`: `string`, `config`: [`RestAsyncStorageAdapterConfig`](README.md#restasyncstorageadapterconfig)<`T`, `TBody`\>) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> |
+| `jsonAsync` | <T\>(`resourceUrl`: `string`, `config?`: [`PartialRESTAsyncStorageAdapterConfig`](README.md#partialrestasyncstorageadapterconfig)) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> |
+| `textAsync` | (`resourceUrl`: `string`, `config?`: [`PartialRESTAsyncStorageAdapterConfig`](README.md#partialrestasyncstorageadapterconfig)) => [`AsyncItemStorage`](README.md#asyncitemstorage)<`string`\> |
+
+#### Defined in
+
+[src/lib/storage-adapters/rest.ts:155](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/rest.ts#L155)
+
+___
+
+### WebStorageAdapters
+
+• `Const` **WebStorageAdapters**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `local` | <T\>(`key`: `string`, `options`: { `observe?`: ``false`` ; `serde?`: [`Serde`](README.md#serde)<`T`, `string`, `string`\>  }) => [`ItemStorage`](README.md#itemstorage)<`T`\><T\>(`key`: `string`, `options?`: { `observe`: ``true`` ; `serde?`: [`Serde`](README.md#serde)<`T`, `string`, `string`\>  }) => [`ObservableItemStorage`](README.md#observableitemstorage)<`T`\><T\>(`key`: `string`, `options?`: { `observe?`: `boolean` ; `serde?`: [`Serde`](README.md#serde)<`T`, `string`, `string`\>  }) => [`ItemStorage`](README.md#itemstorage)<`T`\> \| [`ObservableItemStorage`](README.md#observableitemstorage)<`T`\> |
+| `session` | <T\>(`key`: `string`, `options`: { `observe?`: ``false`` ; `serde?`: [`Serde`](README.md#serde)<`T`, `string`, `string`\>  }) => [`ItemStorage`](README.md#itemstorage)<`T`\><T\>(`key`: `string`, `options?`: { `observe`: ``true`` ; `serde?`: [`Serde`](README.md#serde)<`T`, `string`, `string`\>  }) => [`ObservableItemStorage`](README.md#observableitemstorage)<`T`\><T\>(`key`: `string`, `options?`: { `observe?`: `boolean` ; `serde?`: [`Serde`](README.md#serde)<`T`, `string`, `string`\>  }) => [`ItemStorage`](README.md#itemstorage)<`T`\> \| [`ObservableItemStorage`](README.md#observableitemstorage)<`T`\> |
+
+#### Defined in
+
+[src/lib/storage-adapters/web-storage.ts:220](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/web-storage.ts#L220)
 
 ## Functions
 

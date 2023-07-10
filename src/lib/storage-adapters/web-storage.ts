@@ -1,6 +1,6 @@
 import {makeSignal} from '@cdellacqua/signals';
 import {makeJSONSerde} from './serde/json-serde';
-import * as InMemoryStorageAdapters from './memory';
+import {InMemoryStorageAdapters} from './memory';
 import {Serde, ItemStorage, ObservableItemStorage} from './shared';
 
 /**
@@ -90,7 +90,7 @@ function nativeStorageAdapter<T>(
  * @param options.serde.serialize a function that converts T into a string.
  * @param options.serde.deserialize a function that converts a string into T.
  */
-export function local<T>(
+function local<T>(
 	key: string,
 	options: {
 		serde?: Serde<T, string>;
@@ -106,7 +106,7 @@ export function local<T>(
  * @param options.serde.serialize a function that converts T into a string.
  * @param options.serde.deserialize a function that converts a string into T.
  */
-export function local<T>(
+function local<T>(
 	key: string,
 	options?: {
 		serde?: Serde<T, string>;
@@ -122,7 +122,7 @@ export function local<T>(
  * @param options.serde.serialize a function that converts T into a string.
  * @param options.serde.deserialize a function that converts a string into T.
  */
-export function local<T>(
+function local<T>(
 	key: string,
 	options?: {
 		serde?: Serde<T, string>;
@@ -130,7 +130,7 @@ export function local<T>(
 	},
 ): ItemStorage<T> | ObservableItemStorage<T>;
 
-export function local<T>(
+function local<T>(
 	key: string,
 	options?: {
 		serde?: Serde<T, string>;
@@ -158,7 +158,7 @@ export function local<T>(
  * @param options.serde.serialize a function that converts T into a string.
  * @param options.serde.deserialize a function that converts a string into T.
  */
-export function session<T>(
+function session<T>(
 	key: string,
 	options: {
 		serde?: Serde<T, string>;
@@ -174,7 +174,7 @@ export function session<T>(
  * @param options.serde.serialize a function that converts T into a string.
  * @param options.serde.deserialize a function that converts a string into T.
  */
-export function session<T>(
+function session<T>(
 	key: string,
 	options?: {
 		serde?: Serde<T, string>;
@@ -190,7 +190,7 @@ export function session<T>(
  * @param options.serde.serialize a function that converts T into a string.
  * @param options.serde.deserialize a function that converts a string into T.
  */
-export function session<T>(
+function session<T>(
 	key: string,
 	options?: {
 		serde?: Serde<T, string>;
@@ -198,7 +198,7 @@ export function session<T>(
 	},
 ): ItemStorage<T> | ObservableItemStorage<T>;
 
-export function session<T>(
+function session<T>(
 	key: string,
 	options?: {
 		serde?: Serde<T, string>;
@@ -216,3 +216,5 @@ export function session<T>(
 		},
 	);
 }
+
+export const WebStorageAdapters = {local, session};
