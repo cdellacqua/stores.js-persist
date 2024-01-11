@@ -26,10 +26,11 @@
 	},
 	"homepage": "https://github.com/cdellacqua/stores.js-persist",
 	"files": [
-		"dist/**/*"
+		"dist"
 	],
 	"exports": {
 		".": {
+			"types": "./dist/index.d.ts",
 			"import": "./dist/index.es.js",
 			"require": "./dist/index.cjs"
 		},
