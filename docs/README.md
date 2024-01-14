@@ -18,9 +18,6 @@
 - [AsyncSerde](README.md#asyncserde)
 - [AsyncSetter](README.md#asyncsetter)
 - [AsyncUpdate](README.md#asyncupdate)
-- [DerivedStoreConfig](README.md#derivedstoreconfig)
-- [EqualityComparator](README.md#equalitycomparator)
-- [Getter](README.md#getter)
 - [HttpVerb](README.md#httpverb)
 - [HttpVerbWithBody](README.md#httpverbwithbody)
 - [HttpVerbsWithoutBody](README.md#httpverbswithoutbody)
@@ -30,14 +27,12 @@
 - [PartialRESTAsyncStorageAdapterConfig](README.md#partialrestasyncstorageadapterconfig)
 - [PersistentStore](README.md#persistentstore)
 - [PersistentStoreConfig](README.md#persistentstoreconfig)
+- [ReadonlySignal](README.md#readonlysignal)
 - [ReadonlyStore](README.md#readonlystore)
 - [RestAsyncStorageAdapterConfig](README.md#restasyncstorageadapterconfig)
 - [Serde](README.md#serde)
 - [Setter](README.md#setter)
-- [StartHandler](README.md#starthandler)
-- [StopHandler](README.md#stophandler)
 - [Store](README.md#store)
-- [StoreConfig](README.md#storeconfig)
 - [Subscriber](README.md#subscriber)
 - [Unsubscribe](README.md#unsubscribe)
 - [Update](README.md#update)
@@ -53,11 +48,8 @@
 ### Functions
 
 - [makeAsyncPersistentStore](README.md#makeasyncpersistentstore)
-- [makeDerivedStore](README.md#makederivedstore)
 - [makeJSONSerde](README.md#makejsonserde)
 - [makePersistentStore](README.md#makepersistentstore)
-- [makeReadonlyStore](README.md#makereadonlystore)
-- [makeStore](README.md#makestore)
 
 ## Type Aliases
 
@@ -264,89 +256,6 @@ ___
 
 ___
 
-### DerivedStoreConfig
-
-Ƭ **DerivedStoreConfig**<`T`\>: `Object`
-
-Configurations for derived stores.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Type declaration
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `comparator?` | [`EqualityComparator`](README.md#equalitycomparator)<`T`\> | (optional, defaults to `(a, b) => a === b`) a function that's used to determine if the current value of the store value is different from the one being set and thus if the store needs to be updated and the subscribers notified. |
-
-#### Defined in
-
-node_modules/universal-stores/dist/composition.d.ts:15
-
-___
-
-### EqualityComparator
-
-Ƭ **EqualityComparator**<`T`\>: (`a`: `T`, `b`: `T`) => `boolean`
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Type declaration
-
-▸ (`a`, `b`): `boolean`
-
-A comparison function used to optimize subscribers notifications. Used in [Store](README.md#store)
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `a` | `T` |
-| `b` | `T` |
-
-##### Returns
-
-`boolean`
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:24
-
-___
-
-### Getter
-
-Ƭ **Getter**<`T`\>: () => `T`
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Type declaration
-
-▸ (): `T`
-
-A generic getter function. Used in [Store](README.md#store)
-
-##### Returns
-
-`T`
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:18
-
-___
-
 ### HttpVerb
 
 Ƭ **HttpVerb**: [`HttpVerbsWithoutBody`](README.md#httpverbswithoutbody) \| [`HttpVerbWithBody`](README.md#httpverbwithbody)
@@ -405,7 +314,7 @@ ___
 
 ### ObservableAsyncItemStorage
 
-Ƭ **ObservableAsyncItemStorage**<`T`\>: [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> & { `change$`: `ReadonlySignal`<`T`\> ; `unobserve`: () => `void`  }
+Ƭ **ObservableAsyncItemStorage**<`T`\>: [`AsyncItemStorage`](README.md#asyncitemstorage)<`T`\> & { `change$`: [`ReadonlySignal`](README.md#readonlysignal)<`T`\> ; `unobserve`: () => `void`  }
 
 An asynchronous single item storage that provides a set of common methods and a `change$` signal to listen
 for external modifications to the content of the storage.
@@ -427,7 +336,7 @@ ___
 
 ### ObservableItemStorage
 
-Ƭ **ObservableItemStorage**<`T`\>: [`ItemStorage`](README.md#itemstorage)<`T`\> & { `change$`: `ReadonlySignal`<`T`\> ; `unobserve`: () => `void`  }
+Ƭ **ObservableItemStorage**<`T`\>: [`ItemStorage`](README.md#itemstorage)<`T`\> & { `change$`: [`ReadonlySignal`](README.md#readonlysignal)<`T`\> ; `unobserve`: () => `void`  }
 
 A single item storage that provides a set of common methods and a `change$` signal to listen
 for external modifications to the content of the storage.
@@ -513,6 +422,32 @@ Configuration object used to initialize the Persistent Store.
 
 ___
 
+### ReadonlySignal
+
+Ƭ **ReadonlySignal**<`T`\>: `Object`
+
+A signal that can have subscribers and emit values to them.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `nOfSubscriptions` | () => `number` |
+| `subscribe` | (`subscriber`: [`Subscriber`](README.md#subscriber)<`T`\>) => [`Unsubscribe`](README.md#unsubscribe) |
+| `subscribeOnce` | (`subscriber`: [`Subscriber`](README.md#subscriber)<`T`\>) => [`Unsubscribe`](README.md#unsubscribe) |
+
+#### Defined in
+
+node_modules/@cdellacqua/signals/dist/index.d.ts:6
+
+___
+
 ### ReadonlyStore
 
 Ƭ **ReadonlyStore**<`T`\>: `Object`
@@ -520,7 +455,7 @@ ___
 A store that can have subscribers and emit values to them. It also
 provides the current value upon subscription. It's readonly in the
 sense that it doesn't provide direct set/update methods, unlike [Store](README.md#store),
-therefore its value can only be changed by a [StartHandler](README.md#starthandler) (see also [makeReadonlyStore](README.md#makereadonlystore)).
+therefore its value can only be changed by a StartHandler (see also makeReadonlyStore).
 
 #### Type parameters
 
@@ -538,7 +473,7 @@ therefore its value can only be changed by a [StartHandler](README.md#starthandl
 
 #### Defined in
 
-node_modules/universal-stores/dist/index.d.ts:35
+node_modules/universal-stores/dist/index.d.ts:33
 
 ___
 
@@ -629,59 +564,7 @@ A generic setter function. Used in [Store](README.md#store)
 
 #### Defined in
 
-node_modules/universal-stores/dist/index.d.ts:16
-
-___
-
-### StartHandler
-
-Ƭ **StartHandler**<`T`\>: (`set`: [`Setter`](README.md#setter)<`T`\>) => [`StopHandler`](README.md#stophandler) \| `void`
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Type declaration
-
-▸ (`set`): [`StopHandler`](README.md#stophandler) \| `void`
-
-A function that gets called once a store gets at least one subscriber. Used in [Store](README.md#store)
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `set` | [`Setter`](README.md#setter)<`T`\> |
-
-##### Returns
-
-[`StopHandler`](README.md#stophandler) \| `void`
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:28
-
-___
-
-### StopHandler
-
-Ƭ **StopHandler**: () => `void`
-
-#### Type declaration
-
-▸ (): `void`
-
-A function that gets called once a store reaches 0 subscribers. Used in [Store](README.md#store)
-
-##### Returns
-
-`void`
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:26
+node_modules/universal-stores/dist/index.d.ts:14
 
 ___
 
@@ -700,32 +583,7 @@ provides the current value upon subscription.
 
 #### Defined in
 
-node_modules/universal-stores/dist/index.d.ts:58
-
-___
-
-### StoreConfig
-
-Ƭ **StoreConfig**<`T`\>: `Object`
-
-Configurations for Store<T> and ReadonlyStore<T>.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Type declaration
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `comparator?` | [`EqualityComparator`](README.md#equalitycomparator)<`T`\> | (optional, defaults to `(a, b) => a === b`) a function that's used to determine if the current value of the store value is different from the one being set and thus if the store needs to be updated and the subscribers notified. |
-| `start?` | [`StartHandler`](README.md#starthandler)<`T`\> | (optional) a [StartHandler](README.md#starthandler) that will get called once there is at least one subscriber to this store. |
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:74
+node_modules/universal-stores/dist/index.d.ts:56
 
 ___
 
@@ -743,7 +601,7 @@ ___
 
 ▸ (`current`): `void`
 
-A generic subscriber. Used in [Store](README.md#store)
+A generic subscriber that takes a value emitted by a signal as its only parameter.
 
 ##### Parameters
 
@@ -757,7 +615,7 @@ A generic subscriber. Used in [Store](README.md#store)
 
 #### Defined in
 
-node_modules/universal-stores/dist/index.d.ts:12
+node_modules/@cdellacqua/signals/dist/index.d.ts:2
 
 ___
 
@@ -769,7 +627,7 @@ ___
 
 ▸ (): `void`
 
-A function that's used to unsubscribe a subscriber from a store. Used in [Store](README.md#store)
+A function that's used to unsubscribe a subscriber from a signal.
 
 ##### Returns
 
@@ -777,7 +635,7 @@ A function that's used to unsubscribe a subscriber from a store. Used in [Store]
 
 #### Defined in
 
-node_modules/universal-stores/dist/index.d.ts:14
+node_modules/@cdellacqua/signals/dist/index.d.ts:4
 
 ___
 
@@ -809,7 +667,7 @@ A generic update function. Used in [Store](README.md#store)
 
 #### Defined in
 
-node_modules/universal-stores/dist/index.d.ts:22
+node_modules/universal-stores/dist/index.d.ts:20
 
 ___
 
@@ -841,7 +699,7 @@ A generic updater function. Used in [Store](README.md#store)
 
 #### Defined in
 
-node_modules/universal-stores/dist/index.d.ts:20
+node_modules/universal-stores/dist/index.d.ts:18
 
 ## Variables
 
@@ -951,124 +809,6 @@ the data lazily.
 
 ___
 
-### makeDerivedStore
-
-▸ **makeDerivedStore**<`TIn`, `TOut`\>(`readonlyStore`, `map`, `config?`): [`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
-
-Create a derived store.
-
-Example usage:
-```ts
-const source$ = makeStore(10);
-const derived$ = makeDerivedStore(source$, (v) => v * 2);
-source$.subscribe((v) => console.log(v)); // prints 10
-derived$.subscribe((v) => console.log(v)); // prints 20
-source$.set(16); // triggers both console.logs, printing 16 and 32
-```
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `TIn` |
-| `TOut` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `readonlyStore` | [`ReadonlyStore`](README.md#readonlystore)<`TIn`\> | a store or readonly store. |
-| `map` | (`value`: `TIn`) => `TOut` | a function that takes the current value of the source store and maps it to another value. |
-| `config?` | [`DerivedStoreConfig`](README.md#derivedstoreconfig)<`TOut`\> | a [DerivedStoreConfig](README.md#derivedstoreconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers. |
-
-#### Returns
-
-[`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
-
-#### Defined in
-
-node_modules/universal-stores/dist/composition.d.ts:37
-
-▸ **makeDerivedStore**<`TIn`, `TOut`\>(`readonlyStores`, `map`, `config?`): [`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
-
-Create a derived store from multiple sources.
-
-Example usage:
-```ts
-const source1$ = makeStore(10);
-const source2$ = makeStore(-10);
-const derived$ = makeDerivedStore([source1$, source2$], ([v1, v2]) => v1 + v2);
-source1$.subscribe((v) => console.log(v)); // prints 10
-source2$.subscribe((v) => console.log(v)); // prints -10
-derived$.subscribe((v) => console.log(v)); // prints 0
-source1$.set(11); // prints 11 (first console.log) and 1 (third console.log)
-source2$.set(9); // prints 9 (second console.log) and 20 (third console.log)
-```
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `TIn` | extends `unknown`[] \| [`unknown`, ...unknown[]] |
-| `TOut` | `TOut` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `readonlyStores` | { [K in string \| number \| symbol]: ReadonlyStore<TIn[K]\> } | an array of stores or readonly stores. |
-| `map` | (`value`: { [K in string \| number \| symbol]: TIn[K] }) => `TOut` | a function that takes the current value of all the source stores and maps it to another value. |
-| `config?` | [`DerivedStoreConfig`](README.md#derivedstoreconfig)<`TOut`\> | a [DerivedStoreConfig](README.md#derivedstoreconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers. |
-
-#### Returns
-
-[`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
-
-#### Defined in
-
-node_modules/universal-stores/dist/composition.d.ts:56
-
-▸ **makeDerivedStore**<`TIn`, `TOut`\>(`readonlyStores`, `map`, `config?`): [`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
-
-Create a derived store from multiple sources.
-
-Example usage:
-```ts
-const source1$ = makeStore(10);
-const source2$ = makeStore(-10);
-const derived$ = makeDerivedStore({v1: source1$, v2: source2$}, ({v1, v2}) => v1 + v2);
-source1$.subscribe((v) => console.log(v)); // prints 10
-source2$.subscribe((v) => console.log(v)); // prints -10
-derived$.subscribe((v) => console.log(v)); // prints 0
-source1$.set(11); // prints 11 (first console.log) and 1 (third console.log)
-source2$.set(9); // prints 9 (second console.log) and 20 (third console.log)
-```
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `TIn` |
-| `TOut` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `readonlyStores` | { [K in string \| number \| symbol]: ReadonlyStore<TIn[K]\> } | an array of stores or readonly stores. |
-| `map` | (`value`: { [K in string \| number \| symbol]: TIn[K] }) => `TOut` | a function that takes the current value of all the source stores and maps it to another value. |
-| `config?` | [`DerivedStoreConfig`](README.md#derivedstoreconfig)<`TOut`\> | a [DerivedStoreConfig](README.md#derivedstoreconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers. |
-
-#### Returns
-
-[`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
-
-#### Defined in
-
-node_modules/universal-stores/dist/composition.d.ts:79
-
-___
-
 ### makeJSONSerde
 
 ▸ **makeJSONSerde**<`T`\>(): [`Serde`](README.md#serde)<`T`, `string`\>
@@ -1123,231 +863,3 @@ the data lazily without unnecessarily blocking the main thread.
 #### Defined in
 
 [src/lib/persistent.ts:54](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/persistent.ts#L54)
-
-___
-
-### makeReadonlyStore
-
-▸ **makeReadonlyStore**<`T`\>(`initialValue`, `start?`): [`ReadonlyStore`](README.md#readonlystore)<`T`\>
-
-Make a store of type T.
-
-Example usage:
-```ts
-let value = 0;
-const store$ = makeReadonlyStore(value, (set) => {
-	value++;
-	set(value);
-});
-console.log(store$.content()); // 1
-store$.subscribe((v) => console.log(v)); // immediately prints 2
-console.log(store$.content()); // 2
-```
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `initialValue` | `undefined` \| `T` | the initial value of the store. |
-| `start?` | [`StartHandler`](README.md#starthandler)<`T`\> | a [StartHandler](README.md#starthandler) that will get called once there is at least one subscriber to this store. |
-
-#### Returns
-
-[`ReadonlyStore`](README.md#readonlystore)<`T`\>
-
-a ReadonlyStore
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:146
-
-▸ **makeReadonlyStore**<`T`\>(`initialValue`, `config?`): [`ReadonlyStore`](README.md#readonlystore)<`T`\>
-
-Make a store of type T.
-
-Example usage:
-```ts
-const store$ = makeReadonlyStore({prop: 'some value'}, {
-	comparator: (a, b) => a.prop === b.prop,
-	start: (set) => {
-		// ...
-	},
-});
-```
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `initialValue` | `undefined` \| `T` | the initial value of the store. |
-| `config?` | [`StoreConfig`](README.md#storeconfig)<`T`\> | a [StoreConfig](README.md#storeconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers and a [StartHandler](README.md#starthandler). |
-
-#### Returns
-
-[`ReadonlyStore`](README.md#readonlystore)<`T`\>
-
-a ReadonlyStore
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:163
-
-▸ **makeReadonlyStore**<`T`\>(`initialValue`, `startOrConfig?`): [`ReadonlyStore`](README.md#readonlystore)<`T`\>
-
-Make a store of type T.
-
-Example usage:
-```ts
-let value = 0;
-const store$ = makeReadonlyStore(value, (set) => {
-	value++;
-	set(value);
-});
-console.log(store$.content()); // 1
-store$.subscribe((v) => console.log(v)); // immediately prints 2
-console.log(store$.content()); // 2
-```
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `initialValue` | `undefined` \| `T` | the initial value of the store. |
-| `startOrConfig?` | [`StartHandler`](README.md#starthandler)<`T`\> \| [`StoreConfig`](README.md#storeconfig)<`T`\> | a [StartHandler](README.md#starthandler) or a [StoreConfig](README.md#storeconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers and a [StartHandler](README.md#starthandler). |
-
-#### Returns
-
-[`ReadonlyStore`](README.md#readonlystore)<`T`\>
-
-a ReadonlyStore
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:182
-
-___
-
-### makeStore
-
-▸ **makeStore**<`T`\>(`initialValue`, `start?`): [`Store`](README.md#store)<`T`\>
-
-Make a store of type T.
-
-Example usage:
-```ts
-const store$ = makeStore(0);
-console.log(store$.content()); // 0
-store$.subscribe((v) => console.log(v));
-store$.set(10); // will trigger the above console log, printing 10
-```
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `initialValue` | `undefined` \| `T` | the initial value of the store. |
-| `start?` | [`StartHandler`](README.md#starthandler)<`T`\> | a [StartHandler](README.md#starthandler) that will get called once there is at least one subscriber to this store. |
-
-#### Returns
-
-[`Store`](README.md#store)<`T`\>
-
-a Store
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:97
-
-▸ **makeStore**<`T`\>(`initialValue`, `config?`): [`Store`](README.md#store)<`T`\>
-
-Make a store of type T.
-
-Example usage:
-```ts
-const store$ = makeStore(0);
-console.log(store$.content()); // 0
-store$.subscribe((v) => console.log(v));
-store$.set(10); // will trigger the above console log, printing 10
-```
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `initialValue` | `undefined` \| `T` | the initial value of the store. |
-| `config?` | [`StoreConfig`](README.md#storeconfig)<`T`\> | a [StoreConfig](README.md#storeconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers and a [StartHandler](README.md#starthandler). |
-
-#### Returns
-
-[`Store`](README.md#store)<`T`\>
-
-a Store
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:112
-
-▸ **makeStore**<`T`\>(`initialValue`, `startOrConfig?`): [`Store`](README.md#store)<`T`\>
-
-Make a store of type T.
-
-Example usage:
-```ts
-const store$ = makeStore(0);
-console.log(store$.content()); // 0
-store$.subscribe((v) => console.log(v));
-store$.set(10); // will trigger the above console log, printing 10
-```
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `initialValue` | `undefined` \| `T` | the initial value of the store. |
-| `startOrConfig?` | [`StartHandler`](README.md#starthandler)<`T`\> \| [`StoreConfig`](README.md#storeconfig)<`T`\> | a [StartHandler](README.md#starthandler) or a [StoreConfig](README.md#storeconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers and a [StartHandler](README.md#starthandler). |
-
-#### Returns
-
-[`Store`](README.md#store)<`T`\>
-
-a Store
-
-#### Defined in
-
-node_modules/universal-stores/dist/index.d.ts:127

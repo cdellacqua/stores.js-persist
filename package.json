@@ -74,9 +74,9 @@
 		"vite": "^2.9.12"
 	},
 	"dependencies": {
-		"@cdellacqua/debounce": "^1.1.2",
-		"@cdellacqua/signals": "^5.0.3",
+		"@cdellacqua/debounce": "^2.1.2",
+		"@cdellacqua/signals": "^5.0.4",
 		"async-lock": "^1.4.0",
-		"universal-stores": "^2.2.0"
+		"universal-stores": "^2.3.2"
 	}
 }
