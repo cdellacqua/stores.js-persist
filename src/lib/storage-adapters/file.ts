@@ -231,32 +231,35 @@ function async<T>(
 		// Main issue: https://github.com/nodejs/node-v0.x-archive/issues/2126
 		let expired = true;
 		let changeDetectionLooping = false;
-		const changeListener = debounce(async () => {
-			expired = true;
-			if (changeDetectionLooping) {
-				return;
-			}
-			changeDetectionLooping = true;
-			try {
-				while (expired) {
-					expired = false;
-					if (!fs.existsSync(path)) {
-						break;
-					}
-					const mostRecentValue = await options.serde.deserialize(
-						await fsPromise.readFile(path),
-					);
-					change$.emit(mostRecentValue);
+		const changeListener = debounce(
+			(async () => {
+				expired = true;
+				if (changeDetectionLooping) {
+					return;
 				}
-			} catch (err) {
-				console.warn(
-					`an error occurred while detecting changes on file "${path}"`,
-					err,
-				);
-			} finally {
-				changeDetectionLooping = false;
-			}
-		}, 0);
+				changeDetectionLooping = true;
+				try {
+					while (expired) {
+						expired = false;
+						if (!fs.existsSync(path)) {
+							break;
+						}
+						const mostRecentValue = await options.serde.deserialize(
+							await fsPromise.readFile(path),
+						);
+						change$.emit(mostRecentValue);
+					}
+				} catch (err) {
+					console.warn(
+						`an error occurred while detecting changes on file "${path}"`,
+						err,
+					);
+				} finally {
+					changeDetectionLooping = false;
+				}
+			}) as () => void,
+			0,
+		);
 		let watcher = fs.existsSync(path)
 			? fs.watch(path, {}, () => void changeListener())
 			: undefined;
