@@ -720,7 +720,7 @@ node_modules/universal-stores/dist/index.d.ts:18
 
 #### Defined in
 
-[src/lib/storage-adapters/file.ts:476](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/file.ts#L476)
+[src/lib/storage-adapters/file.ts:479](https://github.com/cdellacqua/stores.js-persist/blob/main/src/lib/storage-adapters/file.ts#L479)
 
 ___
 
