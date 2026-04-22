@@ -1,6 +1,6 @@
-export * from './storage-adapters/index';
-export * from './async-persistent';
-export * from './persistent';
+export * from './storage-adapters/index.js';
+export * from './async-persistent.js';
+export * from './persistent.js';
 export type {
 	Subscriber,
 	Unsubscribe,

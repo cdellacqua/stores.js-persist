@@ -1,7 +1,7 @@
 import {makeSignal} from '@cdellacqua/signals';
-import {makeJSONSerde} from './serde/json-serde';
-import {InMemoryStorageAdapters} from './memory';
-import {Serde, ItemStorage, ObservableItemStorage} from './shared';
+import {makeJSONSerde} from './serde/json-serde.js';
+import {InMemoryStorageAdapters} from './memory.js';
+import {Serde, ItemStorage, ObservableItemStorage} from './shared.js';
 
 /**
  * Generate an ItemStorage based on an implementation of the native Storage API.

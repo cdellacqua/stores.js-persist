@@ -1,4 +1,4 @@
-import {Serde} from '../shared';
+import {Serde} from '../shared.js';
 
 /**
  * Error emitted when JSON.stringify returns undefined

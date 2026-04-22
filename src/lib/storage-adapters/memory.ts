@@ -1,4 +1,4 @@
-import {AsyncItemStorage, ItemStorage} from './shared';
+import {AsyncItemStorage, ItemStorage} from './shared.js';
 
 /**
  * Generate an in-memory ItemStorage. This adapter is not very useful per se, but

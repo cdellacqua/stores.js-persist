@@ -1,5 +1,5 @@
 import {makeStore, Setter, Store, Update} from 'universal-stores';
-import {ItemStorage, ObservableItemStorage} from './storage-adapters/shared';
+import {ItemStorage, ObservableItemStorage} from './storage-adapters/shared.js';
 
 /**
  * A Persistent store that supports synchronous operations.

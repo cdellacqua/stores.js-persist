@@ -5,13 +5,13 @@ import {
 	AsyncSerde,
 	ObservableItemStorage,
 	ObservableAsyncItemStorage,
-} from './shared';
+} from './shared.js';
 import fs from 'fs';
 import fsPromise from 'fs/promises';
 import {Stream} from 'stream';
 import {makeSignal} from '@cdellacqua/signals';
 import {debounce} from '@cdellacqua/debounce';
-import {makeJSONSerde} from './serde/json-serde';
+import {makeJSONSerde} from './serde/json-serde.js';
 
 /**
  * Create a synchronous storage adapter based on a file.

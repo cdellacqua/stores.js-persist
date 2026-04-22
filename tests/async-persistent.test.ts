@@ -1,6 +1,9 @@
 import {makeSignal} from '@cdellacqua/signals';
 import {expect} from 'chai';
-import {InMemoryStorageAdapters, makeAsyncPersistentStore} from '../src/lib';
+import {
+	InMemoryStorageAdapters,
+	makeAsyncPersistentStore,
+} from '../src/lib/index.js';
 
 describe('async persistent store', () => {
 	it('persists the initial value', async () => {

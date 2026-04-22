@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {existsSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'fs';
 import {join} from 'path';
-import {FileStorageAdapters} from '../../src/lib';
+import {FileStorageAdapters} from '../../src/lib/index.js';
 
 describe('file adapter (observe variant)', () => {
 	mkdirSync('tmp', {recursive: true});
@@ -14,7 +14,7 @@ describe('file adapter (observe variant)', () => {
 	it('tests synchronous R/W on filesystem', () => {
 		const adapter = FileStorageAdapters.sync<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => new Uint8Array(buffer),
 			},
 			observe: true,
@@ -33,7 +33,7 @@ describe('file adapter (observe variant)', () => {
 	it('tests asynchronous R/W on filesystem', async () => {
 		const adapter = FileStorageAdapters.async<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => Promise.resolve(new Uint8Array(buffer)),
 			},
 			observe: true,
@@ -53,7 +53,7 @@ describe('file adapter (observe variant)', () => {
 	it('tests synchronous clear on filesystem', () => {
 		const adapter = FileStorageAdapters.sync<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => new Uint8Array(buffer),
 			},
 			observe: true,
@@ -70,7 +70,7 @@ describe('file adapter (observe variant)', () => {
 	it('tests asynchronous clear on filesystem', async () => {
 		const adapter = FileStorageAdapters.async<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => new Uint8Array(buffer),
 			},
 			observe: true,
@@ -88,7 +88,7 @@ describe('file adapter (observe variant)', () => {
 	it('tests synchronous change detection on filesystem', async () => {
 		const adapter = FileStorageAdapters.sync<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => new Uint8Array(buffer),
 			},
 			observe: true,
@@ -108,7 +108,7 @@ describe('file adapter (observe variant)', () => {
 	it('tests asynchronous change detection on filesystem', async () => {
 		const adapter = FileStorageAdapters.async<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => new Uint8Array(buffer),
 			},
 			observe: true,
@@ -207,7 +207,7 @@ describe('file adapter (unobserve variant)', () => {
 	it('tests synchronous R/W on filesystem', () => {
 		const adapter = FileStorageAdapters.sync<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => new Uint8Array(buffer),
 			},
 		});
@@ -224,7 +224,7 @@ describe('file adapter (unobserve variant)', () => {
 	it('tests asynchronous R/W on filesystem', async () => {
 		const adapter = FileStorageAdapters.async<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => Promise.resolve(new Uint8Array(buffer)),
 			},
 			observe: false,
@@ -243,7 +243,7 @@ describe('file adapter (unobserve variant)', () => {
 	it('tests synchronous clear on filesystem', () => {
 		const adapter = FileStorageAdapters.sync<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => new Uint8Array(buffer),
 			},
 		});
@@ -256,7 +256,7 @@ describe('file adapter (unobserve variant)', () => {
 	it('tests asynchronous clear on filesystem', async () => {
 		const adapter = FileStorageAdapters.async<Uint8Array>(testFilePath, {
 			serde: {
-				serialize: (content) => Buffer.from(content),
+				serialize: (content) => content,
 				deserialize: (buffer) => new Uint8Array(buffer),
 			},
 		});

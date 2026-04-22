@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {Serde, RESTStorageAdapters} from '../../src/lib';
+import {Serde, RESTStorageAdapters} from '../../src/lib/index.js';
 
 function mockFetch<T, TSerialized extends BodyInit | null | undefined>(
 	initialValue: T | null,

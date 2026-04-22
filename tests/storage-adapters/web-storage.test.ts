@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {WebStorageAdapters} from '../../src/lib';
+import {WebStorageAdapters} from '../../src/lib/index.js';
 import {JSDOM} from 'jsdom';
 
 const testsForObserveVariant = () => {

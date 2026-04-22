@@ -9,7 +9,7 @@ import {
 import {
 	AsyncItemStorage,
 	ObservableAsyncItemStorage,
-} from './storage-adapters/shared';
+} from './storage-adapters/shared.js';
 import AsyncLock from 'async-lock';
 
 /** Possible states of an AsyncPersistentStore. */

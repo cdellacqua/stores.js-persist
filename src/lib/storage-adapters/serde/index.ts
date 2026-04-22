@@ -1,1 +1,1 @@
-export * from './json-serde';
+export * from './json-serde.js';

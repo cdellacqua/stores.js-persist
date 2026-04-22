@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {InMemoryStorageAdapters} from '../../src/lib';
+import {InMemoryStorageAdapters} from '../../src/lib/index.js';
 
 describe('memory adapter', () => {
 	it('tests synchronous R/W on memory', () => {

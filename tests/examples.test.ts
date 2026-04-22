@@ -5,7 +5,7 @@ import {
 	makePersistentStore,
 	FileStorageAdapters,
 	WebStorageAdapters,
-} from '../src/lib';
+} from '../src/lib/index.js';
 import {JSDOM} from 'jsdom';
 
 describe('examples', () => {

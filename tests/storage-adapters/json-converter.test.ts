@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import {
 	JSONDeserializationError,
 	makeJSONSerde,
-} from '../../src/lib/storage-adapters/serde/json-serde';
+} from '../../src/lib/storage-adapters/serde/json-serde.js';
 
 describe('test json converter', () => {
 	it('stringifies as usual', () => {

@@ -1,4 +1,4 @@
-import {makePersistentStore, WebStorageAdapters} from './lib';
+import {makePersistentStore, WebStorageAdapters} from './lib/index.js';
 import './style.css';
 
 const list = document.querySelector('#list') as HTMLUListElement;

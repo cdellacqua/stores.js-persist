@@ -1,5 +1,5 @@
-import {makeJSONSerde} from './serde/json-serde';
-import {AsyncItemStorage, AsyncSerde} from './shared';
+import {makeJSONSerde} from './serde/json-serde.js';
+import {AsyncItemStorage, AsyncSerde} from './shared.js';
 
 export type HttpVerbsWithoutBody = 'GET';
 export type HttpVerbWithBody = 'POST' | 'PUT' | 'PATCH' | 'DELETE';
