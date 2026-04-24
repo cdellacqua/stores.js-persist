@@ -23,7 +23,8 @@
 		"query"
 	],
 	"repository": {
-		"url": "git+https://github.com/cdellacqua/stores.js-persist"
+		"type": "git",
+		"url": "git+https://github.com/cdellacqua/stores.js-persist.git"
 	},
 	"bugs": {
 		"url": "https://github.com/cdellacqua/stores.js-persist/issues"
