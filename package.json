@@ -92,9 +92,9 @@
 		"vitest": "^4.1.5"
 	},
 	"dependencies": {
-		"@cdellacqua/debounce": "^2.1.2",
-		"@cdellacqua/signals": "^5.0.4",
+		"@cdellacqua/debounce": "^3.0.0",
+		"@cdellacqua/signals": "^6.0.0",
 		"async-lock": "^1.4.0",
-		"universal-stores": "^2.4.3"
+		"universal-stores": "^3.0.0"
 	}
 }
