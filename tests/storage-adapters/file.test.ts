@@ -1,6 +1,6 @@
 import {existsSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'fs';
 import {join} from 'path';
-import {FileStorageAdapters} from '../../src/lib/index.js';
+import {FileStorageAdapters} from '../../src/lib/node.js';
 
 describe('file adapter (observe variant)', () => {
 	mkdirSync('tmp', {recursive: true});

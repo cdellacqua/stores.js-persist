@@ -38,6 +38,10 @@
 			"import": "./dist/index.js",
 			"require": "./dist/index.cjs"
 		},
+		"./node": {
+			"types": "./dist/node.d.ts",
+			"import": "./dist/node.js"
+		},
 		"./package.json": "./package.json"
 	},
 	"scripts": {
@@ -46,7 +50,7 @@
 		"test:watch": "vitest",
 		"dev:browser": "vite",
 		"dev:node": "tsx watch src/node.ts",
-		"build": "vite build --mode lib && vite build --mode umd",
+		"build": "vite build --mode lib && vite build --mode umd && vite build --mode node",
 		"typecheck": "tsc",
 		"doc": "rimraf docs && typedoc --gitRevision main --readme none --plugin typedoc-plugin-markdown src/lib/index.ts",
 		"check": "npm run lint && npm run typecheck && npm run test",
@@ -81,6 +85,6 @@
 		"@cdellacqua/debounce": "^2.1.2",
 		"@cdellacqua/signals": "^5.0.4",
 		"async-lock": "^1.4.0",
-		"universal-stores": "^2.3.2"
+		"universal-stores": "^2.4.3"
 	}
 }

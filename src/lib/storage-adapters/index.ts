@@ -1,5 +1,4 @@
 export * from './shared.js';
-export * from './file.js';
 export * from './memory.js';
 export * from './rest.js';
 export * from './web-storage.js';

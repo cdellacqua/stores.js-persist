@@ -1,6 +1,6 @@
 import {join} from 'path';
 import {makeAsyncPersistentStore, makePersistentStore} from './lib/index.js';
-import {FileStorageAdapters} from './lib/index.js';
+import {FileStorageAdapters} from './lib/node.js';
 import readline from 'readline';
 
 async function demo1() {

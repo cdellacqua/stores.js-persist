@@ -30,7 +30,7 @@ You can use one of the built-ins provided in this package, such as:
 
 - WebStorageAdapters.local, WebStorageAdapters.session
 - RESTStorageAdapters.textAsync, RESTStorageAdapters.jsonAsync
-- FileStorageAdapters.textSync, FileStorageAdapters.jsonSync, FileStorageAdapters.textAsync, FileStorageAdapters.jsonAsync
+- FileStorageAdapters.textSync, FileStorageAdapters.jsonSync, FileStorageAdapters.textAsync, FileStorageAdapters.jsonAsync from `@universal-stores/persist/node`
 
 Or you can create your own by providing an object that implements `ItemStorage` or `AsyncItemStorage`, depending
 on whether you need a synchronous or asynchronous store.
@@ -129,8 +129,8 @@ persist complex types that may not have a 1:1 representation in JSON (e.g. Date)
 ```ts
 import {
 	makePersistentStore,
-	FileStorageAdapters,
 } from '@universal-stores/persist';
+import {FileStorageAdapters} from '@universal-stores/persist/node';
 
 const todos$ = makePersistentStore<string[]>([], {
 	storage: FileStorageAdapters.jsonSync('todos.txt'),
@@ -147,8 +147,8 @@ todos$.set(['drink coffee', 'read the newsletter']); // will persist the array t
 ```ts
 import {
 	makePersistentStore,
-	FileStorageAdapters,
 } from '@universal-stores/persist';
+import {FileStorageAdapters} from '@universal-stores/persist/node';
 
 const data$ = makePersistentStore<Uint8Array>(new Uint8Array(), {
 	storage: FileStorageAdapters.sync('data.bin', {

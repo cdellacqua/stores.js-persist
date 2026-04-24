@@ -2,9 +2,9 @@ import {existsSync, mkdirSync, unlinkSync} from 'fs';
 import path from 'path';
 import {
 	makePersistentStore,
-	FileStorageAdapters,
 	WebStorageAdapters,
 } from '../src/lib/index.js';
+import {FileStorageAdapters} from '../src/lib/node.js';
 import {JSDOM} from 'jsdom';
 
 describe('examples', () => {
