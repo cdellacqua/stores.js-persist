@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {existsSync, mkdirSync, unlinkSync} from 'fs';
 import path from 'path';
 import {
@@ -10,23 +9,17 @@ import {JSDOM} from 'jsdom';
 
 describe('examples', () => {
 	mkdirSync('tmp', {recursive: true});
-	before(() => {
+	beforeAll(() => {
 		const dom = new JSDOM(`<!DOCTYPE html>`, {
 			url: 'http://localhost',
 		});
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).localStorage = dom.window.localStorage;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).sessionStorage = dom.window.sessionStorage;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).window = dom.window;
 	});
-	after(() => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	afterAll(() => {
 		(globalThis as any).localStorage = undefined;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).sessionStorage = undefined;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).window = undefined;
 	});
 	it('README 1', () => {

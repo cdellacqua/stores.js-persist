@@ -102,5 +102,6 @@ export function makePersistentStore<T>(
 		},
 		nOfSubscriptions: cache$.nOfSubscriptions,
 		content: cache$.content,
+		watch: cache$.watch,
 	};
 }

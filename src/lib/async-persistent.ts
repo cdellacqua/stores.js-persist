@@ -159,6 +159,7 @@ export function makeAsyncPersistentStore<T>(
 		subscribe: cache$.subscribe,
 		nOfSubscriptions: cache$.nOfSubscriptions,
 		content: cache$.content,
+		watch: cache$.watch,
 		state$,
 	};
 }

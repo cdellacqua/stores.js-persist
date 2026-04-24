@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {existsSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'fs';
 import {join} from 'path';
 import {FileStorageAdapters} from '../../src/lib/index.js';

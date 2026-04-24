@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {InMemoryStorageAdapters} from '../../src/lib/index.js';
 
 describe('memory adapter', () => {

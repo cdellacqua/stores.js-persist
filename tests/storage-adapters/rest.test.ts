@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {Serde, RESTStorageAdapters} from '../../src/lib/index.js';
 
 function mockFetch<T, TSerialized extends BodyInit | null | undefined>(
@@ -59,8 +58,8 @@ describe('rest adapter', () => {
 		mockFetch(
 			null,
 			{
-				serialize: (content: ArrayBuffer) => Buffer.from(content),
-				deserialize: (response) => new Uint8Array(response as ArrayBuffer),
+				serialize: (content: Uint8Array) => Buffer.from(content),
+				deserialize: (response) => new Uint8Array(response as Uint8Array),
 			},
 			'application/octet-stream',
 		);
@@ -69,7 +68,7 @@ describe('rest adapter', () => {
 			{
 				bodyExtractor: (res) => res.blob(),
 				serde: {
-					serialize: async (content: ArrayBuffer) => Buffer.from(content),
+					serialize: async (content: Uint8Array) => Buffer.from(content),
 					deserialize: async (blob) => new Uint8Array(await blob.arrayBuffer()),
 				},
 			},
@@ -83,8 +82,8 @@ describe('rest adapter', () => {
 		mockFetch(
 			null,
 			{
-				serialize: (content: ArrayBuffer) => Buffer.from(content),
-				deserialize: (response) => new Uint8Array(response as ArrayBuffer),
+				serialize: (content: Uint8Array) => Buffer.from(content),
+				deserialize: (response) => new Uint8Array(response as Uint8Array),
 			},
 			'application/octet-stream',
 		);

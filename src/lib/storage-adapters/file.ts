@@ -89,7 +89,7 @@ function sync<T>(
 			if (fs.existsSync(path)) {
 				change$.emit(options.serde.deserialize(fs.readFileSync(path)));
 			}
-		}, 0);
+		});
 		let watcher = fs.existsSync(path)
 			? fs.watch(path, {}, changeListener)
 			: undefined;
@@ -258,7 +258,6 @@ function async<T>(
 					changeDetectionLooping = false;
 				}
 			}) as () => void,
-			0,
 		);
 		let watcher = fs.existsSync(path)
 			? fs.watch(path, {}, () => void changeListener())

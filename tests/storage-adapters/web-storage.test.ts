@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {WebStorageAdapters} from '../../src/lib/index.js';
 import {JSDOM} from 'jsdom';
 
@@ -163,12 +162,9 @@ const testsForChangeDetection = () => {
 };
 
 describe('without WebStorage mock', () => {
-	before(() => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	beforeAll(() => {
 		(globalThis as any).localStorage = undefined;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).sessionStorage = undefined;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).window = undefined;
 	});
 	describe('web-storage adapter (observe variant)', testsForObserveVariant);
@@ -176,23 +172,17 @@ describe('without WebStorage mock', () => {
 });
 
 describe('with WebStorage mock', () => {
-	before(() => {
+	beforeAll(() => {
 		const dom = new JSDOM(`<!DOCTYPE html>`, {
 			url: 'http://localhost',
 		});
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).localStorage = dom.window.localStorage;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).sessionStorage = dom.window.sessionStorage;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).window = dom.window;
 	});
-	after(() => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	afterAll(() => {
 		(globalThis as any).localStorage = undefined;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).sessionStorage = undefined;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(globalThis as any).window = undefined;
 	});
 	describe('web-storage adapter (observe variant)', testsForObserveVariant);

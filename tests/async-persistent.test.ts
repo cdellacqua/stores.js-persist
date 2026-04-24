@@ -1,5 +1,4 @@
 import {makeSignal} from '@cdellacqua/signals';
-import {expect} from 'chai';
 import {
 	InMemoryStorageAdapters,
 	makeAsyncPersistentStore,
