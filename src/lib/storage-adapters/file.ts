@@ -6,8 +6,8 @@ import {
 	ObservableItemStorage,
 	ObservableAsyncItemStorage,
 } from './shared.js';
-import fs from 'fs';
-import fsPromise from 'fs/promises';
+import fs from 'node:fs';
+import fsPromise from 'node:fs/promises';
 import {Stream} from 'stream';
 import {makeSignal} from '@cdellacqua/signals';
 import {debounce} from '@cdellacqua/debounce';

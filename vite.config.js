@@ -1,9 +1,11 @@
 import {defineConfig} from 'vite';
 import dts from 'vite-plugin-dts';
 import {readFileSync} from 'fs';
+import {builtinModules} from 'module';
 import {join} from 'path';
 
 const {dependencies = {}, peerDependencies = {}, camelCaseName} = JSON.parse(readFileSync('package.json').toString());
+const nodeBuiltins = [...builtinModules, ...builtinModules.map((moduleName) => `node:${moduleName}`)];
 
 export default defineConfig(({mode}) => {
 	const isUmdBuild = mode === 'umd';
@@ -27,11 +29,14 @@ export default defineConfig(({mode}) => {
 			sourcemap: true,
 			...(isNodeBuild
 				? {
-					ssr: join('src', 'lib', 'node.ts'),
+					lib: {
+						formats: ['es'],
+						entry: join('src', 'lib', 'node.ts'),
+						fileName: () => 'node.js',
+					},
 					rollupOptions: {
-						external: [...Object.keys(dependencies), ...Object.keys(peerDependencies)],
+						external: [...nodeBuiltins, ...Object.keys(dependencies), ...Object.keys(peerDependencies)],
 						output: {
-							entryFileNames: 'node.js',
 							format: 'es',
 						},
 					},
