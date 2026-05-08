@@ -40,6 +40,7 @@
 
 ## Variables
 
+- [IndexedDBStorageAdapters](variables/IndexedDBStorageAdapters.md)
 - [InMemoryStorageAdapters](variables/InMemoryStorageAdapters.md)
 - [RESTStorageAdapters](variables/RESTStorageAdapters.md)
 - [WebStorageAdapters](variables/WebStorageAdapters.md)
